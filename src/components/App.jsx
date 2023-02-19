@@ -6,7 +6,6 @@ import { Button } from './Button/Button.jsx';
 // import { GlobalStyle } from '../utils/GlobalStyles';
 import { AppContainer } from './App.styled.js';
 import { Loader } from './Loader/Loader.jsx';
-import { pixabayApi } from '../servisies/Api.js';
 
 export function App() {
   const [searchQuery, setSearchQuery] = useState('');

@@ -7,12 +7,12 @@ import { ImageGalleryList } from './ImageGallery.styled';
 export const ImageGallery = ({ photosData }) => {
   return (
     <ImageGalleryList>
-      {photosData.map(photo => (
+      {photosData.map(({ id, webformatURL, tags, largeImageURL }) => (
         <ImageGalleryItem
-          key={photo.id}
-          smallPhoto={photo.webformatURL}
-          alt={photo.tags}
-          info={photo}
+          key={id}
+          webformatURL={webformatURL}
+          alt={tags}
+          largeImageURL={largeImageURL}
         />
       ))}
     </ImageGalleryList>

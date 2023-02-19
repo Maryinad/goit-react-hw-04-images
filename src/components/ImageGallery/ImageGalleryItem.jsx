@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Modal } from '../Modal/Modal.jsx';
 import { GalleryItem, GalleryImg } from './ImageGalleryItem.styled';
 
-export function ImageGalleryItem(photos) {
+export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
+  // console.log(webformatURL, tags, largeImageURL);
   const [isOpenModal, setIsOpenModal] = useState(false);
   // console.log(children);
   // state = {
@@ -20,13 +21,13 @@ export function ImageGalleryItem(photos) {
 
   return (
     <GalleryItem>
-      <GalleryImg
-        onClick={handleToggleModal}
-        src={photos.smallPhoto}
-        alt={photos.alt}
-      />
+      <GalleryImg onClick={handleToggleModal} src={webformatURL} alt={tags} />
       {isOpenModal && (
-        <Modal data={photos.info} closeModal={handleToggleModal} />
+        <Modal
+          largeImageURL={largeImageURL}
+          closeModal={handleToggleModal}
+          alt={tags}
+        />
       )}
     </GalleryItem>
   );
