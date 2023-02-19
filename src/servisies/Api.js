@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const pixabayApi = axios.create({
+export const pixabayApi = axios.create({
   baseURL: 'https://pixabay.com/api/',
   params: {
     image_type: 'photo',

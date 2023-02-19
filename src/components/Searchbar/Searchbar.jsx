@@ -1,49 +1,52 @@
 import PropTypes from 'prop-types';
 
-import { Component } from 'react';
+import { useState } from 'react';
 import { Header, Form, Btn, BtnLabel, Input } from './Searchbar.styled';
 
 import { BsSearch } from 'react-icons/bs';
-export class Searchbar extends Component {
-  state = {
-    query: '',
-  };
+export function Searchbar(props) {
+  const [query, setQuery] = useState('');
+  // state = {
+  //   query: '',
+  // };
 
-  handleInput = event => {
-    this.setState({ query: event.target.value });
+  const handleInput = event => {
+    setQuery(event.target.value);
+
+    // this.setState({ query: event.target.value });
     // console.log(event.target.value);
   };
 
-  handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    this.props.handleSubmit(this.state.query.trim().toLowerCase());
-    this.setState({ query: '' });
+
+    props.handleSubmit(query.trim().toLowerCase());
+    setQuery('');
+    // this.setState({ query: '' });
   };
 
-  render() {
-    return (
-      <>
-        <Header>
-          <Form onSubmit={this.handleFormSubmit}>
-            <Btn type="submit">
-              <BtnLabel>Search</BtnLabel>
-              <BsSearch size="20px" fill="black" />
-            </Btn>
+  return (
+    <>
+      <Header>
+        <Form onSubmit={handleFormSubmit}>
+          <Btn type="submit">
+            <BtnLabel>Search</BtnLabel>
+            <BsSearch size="20px" fill="black" />
+          </Btn>
 
-            <Input
-              name="query"
-              value={this.state.query}
-              type="text"
-              autocomplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              onChange={this.handleInput}
-            />
-          </Form>
-        </Header>
-      </>
-    );
-  }
+          <Input
+            name="query"
+            value={query}
+            type="text"
+            autocomplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            onChange={handleInput}
+          />
+        </Form>
+      </Header>
+    </>
+  );
 }
 
 Searchbar.propTypes = {

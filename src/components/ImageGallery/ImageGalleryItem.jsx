@@ -1,34 +1,35 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useState } from 'react';
 import { Modal } from '../Modal/Modal.jsx';
 import { GalleryItem, GalleryImg } from './ImageGalleryItem.styled';
 
-export class ImageGalleryItem extends Component {
+export function ImageGalleryItem(photos) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
   // console.log(children);
-  state = {
-    isOpenModal: false,
+  // state = {
+  //   isOpenModal: false,
+  // };
+
+  const handleToggleModal = () => {
+    setIsOpenModal(prevState => !prevState);
+
+    // this.setState(prevState => ({
+    //   isOpenModal: !prevState.isOpenModal,
+    // }));
   };
 
-  handleToggleModal = () => {
-    this.setState(prevState => ({
-      isOpenModal: !prevState.isOpenModal,
-    }));
-  };
-
-  render() {
-    return (
-      <GalleryItem>
-        <GalleryImg
-          onClick={this.handleToggleModal}
-          src={this.props.smallPhoto}
-          alt={this.props.alt}
-        />
-        {this.state.isOpenModal && (
-          <Modal data={this.props.info} closeModal={this.handleToggleModal} />
-        )}
-      </GalleryItem>
-    );
-  }
+  return (
+    <GalleryItem>
+      <GalleryImg
+        onClick={handleToggleModal}
+        src={photos.smallPhoto}
+        alt={photos.alt}
+      />
+      {isOpenModal && (
+        <Modal data={photos.info} closeModal={handleToggleModal} />
+      )}
+    </GalleryItem>
+  );
 }
 
 ImageGalleryItem.propTypes = {
