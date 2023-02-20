@@ -37,10 +37,6 @@ export function App() {
 
   const handleAddPhotos = () => {
     setCurrentPage(prevState => prevState + 1);
-
-    // this.setState(prevState => ({
-    //   currentPage: prevState.currentPage + 1,
-    // }));
   };
 
   useEffect(() => {
@@ -105,6 +101,7 @@ export function App() {
 
   return (
     <AppContainer>
+      {error && <p>Ooops, error: {error}</p>}
       <Searchbar handleSubmit={handleSubmit} />
       {loading && <Loader />}
       {photos.length !== 0 && <ImageGallery photosData={photos} />}

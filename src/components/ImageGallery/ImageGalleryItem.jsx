@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Modal } from '../Modal/Modal.jsx';
 import { GalleryItem, GalleryImg } from './ImageGalleryItem.styled';
 
-export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
+export function ImageGalleryItem({ webformatURL, alt, largeImageURL }) {
   // console.log(webformatURL, tags, largeImageURL);
   const [isOpenModal, setIsOpenModal] = useState(false);
   // console.log(children);
@@ -21,12 +21,12 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
 
   return (
     <GalleryItem>
-      <GalleryImg onClick={handleToggleModal} src={webformatURL} alt={tags} />
+      <GalleryImg onClick={handleToggleModal} src={webformatURL} alt={alt} />
       {isOpenModal && (
         <Modal
           largeImageURL={largeImageURL}
           closeModal={handleToggleModal}
-          alt={tags}
+          alt={alt}
         />
       )}
     </GalleryItem>
@@ -34,9 +34,7 @@ export function ImageGalleryItem({ webformatURL, tags, largeImageURL }) {
 }
 
 ImageGalleryItem.propTypes = {
-  photos: PropTypes.shape({
-    tags: PropTypes.string.isRequired,
-    webformatURL: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
+  alt: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
 };
